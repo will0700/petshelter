@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h2>Edit this pet</h2>\n<div *ngIf=\"pet != null\">\n    <form (submit)=\"handleSubmit()\">\n        <p *ngFor=\"let error of errors\">{{ error }}</p>\n        <div>\n            <label for=\"\">Pet name:</label>\n            <input type=\"text\" name=\"name\" [(ngModel)]=\"pet.name\">\n        </div>\n        <div>\n            <label for=\"\">Pet type:</label>\n            <input type=\"text\" name=\"type\" [(ngModel)]=\"pet.type\">\n        </div>\n        <div>\n            <label for=\"\">Description:</label>\n            <input type=\"text\" name=\"description\" [(ngModel)]=\"pet.description\">\n        </div>\n        <div>\n            <label for=\"\">Skills</label>\n            <div>\n                <label for=\"\">Skill 1</label>\n                <input type=\"text\" name=\"skill1\" [(ngModel)]=\"pet.skills[0]\">\n                <label for=\"\">Skill 2</label>\n                <input type=\"text\" name=\"skill2\" [(ngModel)]=\"pet.skills[1]\">\n                <label for=\"\">Skill 3</label>\n                <input type=\"text\" name=\"skill3\" [(ngModel)]=\"pet.skills[2]\">\n            </div>\n        </div>\n        <button>Edit pet</button>\n        <button type=\"button\" (click)=\"handleCancel()\">Cancel</button>\n    </form>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h2>Edit this pet</h2>\n<div *ngIf=\"pet != null\">\n    <form (submit)=\"handleSubmit()\">\n        <p *ngFor=\"let error of errors\">{{ error }}</p>\n        <div>\n            <label for=\"\">Pet name:</label>\n            <input type=\"text\" name=\"name\" [(ngModel)]=\"pet.name\">\n        </div>\n        <div>\n            <label for=\"\">Pet type:</label>\n            <input type=\"text\" name=\"type\" [(ngModel)]=\"pet.type\">\n        </div>\n        <div>\n            <label for=\"\">Description:</label>\n            <input type=\"text\" name=\"description\" [(ngModel)]=\"pet.description\">\n        </div>\n        <div>\n            <label for=\"\">Skills</label>\n            <div>\n                <label for=\"\">Skill 1</label>\n                <input type=\"text\" name=\"skill1\" [(ngModel)]=\"pet.skills[0]\">\n                <label for=\"\">Skill 2</label>\n                <input type=\"text\" name=\"skill2\" [(ngModel)]=\"pet.skills[1]\">\n                <label for=\"\">Skill 3</label>\n                <input type=\"text\" name=\"skill3\" [(ngModel)]=\"pet.skills[2]\">\n            </div>\n        </div>\n        <button>Edit pet</button>\n        <button type=\"button\" (click)=\"handleCancel(pet._id)\">Cancel</button>\n    </form>\n</div>\n");
 
 /***/ }),
 
@@ -595,8 +595,8 @@ let EditComponent = class EditComponent {
             });
         });
     }
-    handleCancel() {
-        this._router.navigate(['/pets']);
+    handleCancel(id) {
+        this._router.navigate(['/pets/' + id]);
     }
     handleSubmit() {
         this._httpService.updatePet(this.pet._id, this.pet)
@@ -605,7 +605,7 @@ let EditComponent = class EditComponent {
                 this.errors = data.errors;
             }
             else {
-                this._router.navigate(['/pets']);
+                this._router.navigate(['/pets/' + this.pet._id]);
             }
         });
     }

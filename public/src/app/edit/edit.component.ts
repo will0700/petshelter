@@ -27,8 +27,8 @@ export class EditComponent implements OnInit {
     })
   }
 
-  handleCancel(){
-    this._router.navigate(['/pets'])
+  handleCancel(id){
+    this._router.navigate(['/pets/' + id])
   }
 
   handleSubmit(){
@@ -38,7 +38,7 @@ export class EditComponent implements OnInit {
       if(data.hasOwnProperty('errors')){
         this.errors = data.errors
       } else {
-        this._router.navigate(['/pets'])
+        this._router.navigate(['/pets/' + this.pet._id])
       }
     })
   }
