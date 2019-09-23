@@ -1,0 +1,30 @@
+<div class="wrapper">
+    <form (submit)="handleSubmit()">
+        <p *ngFor="let error of errors">{{ error }}</p>
+        <div>
+            <label for="">Pet name:</label>
+            <input type="text" name="name" [(ngModel)]="newPet.name">
+        </div>
+        <div>
+            <label for="">Pet type:</label>
+            <input type="text" name="type" [(ngModel)]="newPet.type">
+        </div>
+        <div>
+            <label for="">Description:</label>
+            <input type="text" name="description" [(ngModel)]="newPet.description">
+        </div>
+        <div>
+            <label for="">Skills</label>
+            <div>
+                <label for="">Skill 1</label>
+                <input type="text" name="skill1" [(ngModel)]="newPet.skills[0]">
+                <label for="">Skill 2</label>
+                <input type="text" name="skill2" [(ngModel)]="newPet.skills[1]">
+                <label for="">Skill 3</label>
+                <input type="text" name="skill3" [(ngModel)]="newPet.skills[2]">
+            </div>
+        </div>
+        <button>Add pet</button>
+        <button type="button" (click)="handleCancel()">Cancel</button>
+    </form>
+</div>

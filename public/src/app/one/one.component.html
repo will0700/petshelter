@@ -1,0 +1,24 @@
+<a routerLink="/pets">Home</a>
+<div *ngIf="pet != null">
+    <h2>Details about {{pet.name}}</h2>
+    <div>
+        <p>Pet type:</p>
+        <p>{{pet.type}}</p>
+    </div>
+    <div>
+        <p>Description:</p>
+        <p>{{pet.description}}</p>
+    </div>
+    <div>
+        <p>Skills:</p>
+        <div *ngFor="let skill of pet.skills">
+            <p>{{skill}}</p>
+        </div>
+    </div>
+    <div>
+        <p>Likes:</p>
+        <p>{{pet.likes}}</p>
+    </div>
+    <button [disabled]="disableLike" (click)="handleLike(pet._id)">Like this pet</button>
+    <button (click)="handleDelete(pet._id)">Adopt this pet!</button>
+</div>
